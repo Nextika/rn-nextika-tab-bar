@@ -1,3 +1,1 @@
-export function multiply(a, b) {
-    return Promise.resolve(a * b);
-}
+export { TopTabBar } from './TopTabBar';
