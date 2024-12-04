@@ -2,18 +2,18 @@ import React, { FC } from 'react';
 import { LayoutChangeEvent, ScrollView, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
-import { TopTabBarController } from '../hooks/useAnimatedTabController';
+import { TabBarController } from '../hooks/useAnimatedTabController';
 import { Colors } from '../styles/Colors';
-import { TopTabBarProps, TopTabBarItem } from '../types';
-import { TopTabBarButton } from './TopTabBarButton';
+import { TabBarProps, TabBarItem } from '../types';
+import { TabBarButton } from './TabBarButton';
 
-export type TopTabBarHeaderProps = {
-  controller: TopTabBarController;
-  topTabBarProps: TopTabBarProps;
+export type TabBarHeaderProps = {
+  controller: TabBarController;
+  tabBarProps: TabBarProps;
 };
 
-export const TopTabBarHeader: FC<TopTabBarHeaderProps> = props => {
-  if (props.topTabBarProps.hideTabBar) {
+export const TabBarHeader: FC<TabBarHeaderProps> = props => {
+  if (props.tabBarProps.isHidden) {
     return null;
   }
 
@@ -28,22 +28,20 @@ export const TopTabBarHeader: FC<TopTabBarHeaderProps> = props => {
         ref={props.controller.scrollTabRef}
         bounces={false}
         horizontal
-        scrollEnabled={props.topTabBarProps.disableScroll}
+        scrollEnabled={props.tabBarProps.isScrollDisabled}
         scrollEventThrottle={1}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={[
           styles.contentContainer,
-          props.topTabBarProps.disableScroll && styles.contentContainerNotScroll,
+          props.tabBarProps.isScrollDisabled && styles.contentContainerNotScroll,
         ]}
       >
-        {props.topTabBarProps.tabs.map((tab: TopTabBarItem, index: number) => (
-          <TopTabBarButton
+        {props.tabBarProps.tabs.map((tab: TabBarItem, index: number) => (
+          <TabBarButton
             key={`ttbh_${index}`}
             tab={tab}
-            topTabBarProps={props.topTabBarProps}
+            tabBarProps={props.tabBarProps}
             index={index}
-            isLast={props.topTabBarProps.tabs.length - 1 === index} // todo tabBar - убрать внутрь
-            disableScroll={!!props.topTabBarProps.disableScroll} // todo tabBar - убрать внутрь
             animatedIndex={props.controller.animatedIndex}
             onPressTab={props.controller.onPressTab}
             onLayoutTab={onLayoutTab}
@@ -53,7 +51,7 @@ export const TopTabBarHeader: FC<TopTabBarHeaderProps> = props => {
           <Animated.View
             style={[
               styles.tabUnderline,
-              { backgroundColor: props.topTabBarProps.primaryColor ?? Colors.accent.default },
+              { backgroundColor: props.tabBarProps.activeColor ?? Colors.accent.default },
               props.controller.underlineStyle,
             ]}
           />

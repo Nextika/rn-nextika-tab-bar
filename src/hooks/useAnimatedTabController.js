@@ -58,7 +58,7 @@ export const useAnimatedTabController = () => {
         'worklet';
         // Updating the content scroll change.
         translateScrollX.value = event.contentOffset.x;
-        // Updating the current index change to highlight text with color in TopTabBarButton component
+        // Updating the current index change to highlight text with color in TabBarButton component
         animatedIndex.value = translateScrollX.value / WINDOW_WIDTH;
     });
     const onPressTab = (index) => {

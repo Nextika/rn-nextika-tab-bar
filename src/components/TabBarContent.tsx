@@ -2,31 +2,31 @@ import React, { FC, useCallback } from 'react';
 import { FlatList, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 
-import { TopTabBarController, WINDOW_WIDTH } from '../hooks/useAnimatedTabController';
-import { TopTabBarItem, TopTabBarProps } from '../types';
+import { TabBarController, WINDOW_WIDTH } from '../hooks/useAnimatedTabController';
+import { TabBarItem, TabBarProps } from '../types';
 
-export type TopTabBarContentProps = {
-  controller: TopTabBarController;
-  topTabBarProps: TopTabBarProps;
+export type TabBarContentProps = {
+  controller: TabBarController;
+  tabBarProps: TabBarProps;
 };
 
-const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<TopTabBarItem>);
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList<TabBarItem>);
 
-export const TopTabBarContent: FC<TopTabBarContentProps> = props => {
+export const TabBarContent: FC<TabBarContentProps> = props => {
   const handleMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const index = Math.ceil(Math.floor(event.nativeEvent.contentOffset.x) / WINDOW_WIDTH);
     props.controller.currentIndex.value = index;
 
-    if (props.topTabBarProps.onChangeIndex && index !== props.controller.currentIndex.value) {
-      props.topTabBarProps.onChangeIndex(index);
+    if (props.tabBarProps.onChangeIndex && index !== props.controller.currentIndex.value) {
+      props.tabBarProps.onChangeIndex(index);
     }
   };
 
-  const handleKeyExtractor = useCallback((_: TopTabBarItem, index: number) => {
+  const handleKeyExtractor = useCallback((_: TabBarItem, index: number) => {
     return `ttbc_${index}`;
   }, []);
 
-  const handleItemLayout = useCallback((_: ArrayLike<TopTabBarItem> | null | undefined, index: number) => {
+  const handleItemLayout = useCallback((_: ArrayLike<TabBarItem> | null | undefined, index: number) => {
     return {
       length: WINDOW_WIDTH,
       offset: WINDOW_WIDTH * index,
@@ -34,7 +34,7 @@ export const TopTabBarContent: FC<TopTabBarContentProps> = props => {
     };
   }, []);
 
-  const renderItem = ({ item, index }: { item: TopTabBarItem; index: number }) => {
+  const renderItem = ({ item, index }: { item: TabBarItem; index: number }) => {
     return <View style={styles.containerItem}>{item.renderContent(index)}</View>;
   };
 
@@ -48,16 +48,16 @@ export const TopTabBarContent: FC<TopTabBarContentProps> = props => {
       bounces={false}
       horizontal
       pagingEnabled
-      scrollEnabled={!props.topTabBarProps.disablePageSwipe}
+      scrollEnabled={!props.tabBarProps.isSwipeDisabled}
       overScrollMode={'never'}
       scrollEventThrottle={0.1}
       keyboardShouldPersistTaps={'handled'}
       showsHorizontalScrollIndicator={false}
-      data={props.topTabBarProps.tabs as any}
+      data={props.tabBarProps.tabs as any}
       style={styles.flex}
       contentContainerStyle={styles.contentContainer}
       // Optimization parameters
-      extraData={props.topTabBarProps.tabs}
+      extraData={props.tabBarProps.tabs}
       initialNumToRender={5}
       maxToRenderPerBatch={5}
       keyExtractor={handleKeyExtractor}

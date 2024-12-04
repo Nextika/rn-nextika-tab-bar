@@ -23,7 +23,7 @@ import { DefaultStyle } from 'react-native-reanimated/lib/typescript/reanimated2
 
 import { IItemWidth } from '../types';
 
-export type TopTabBarController = {
+export type TabBarController = {
   itemWidth: IItemWidth;
   currentIndex: SharedValue<number>;
   scrollTabRef: RefObject<ScrollView>;
@@ -38,7 +38,7 @@ export type TopTabBarController = {
 
 export const WINDOW_WIDTH = Dimensions.get('window').width;
 
-export const useAnimatedTabController = (): TopTabBarController => {
+export const useAnimatedTabController = (): TabBarController => {
   const scrollTabRef = useAnimatedRef<ScrollView>();
   const scrollContentRef = useRef<FlatList | null>(null);
 
@@ -109,7 +109,7 @@ export const useAnimatedTabController = (): TopTabBarController => {
     // Updating the content scroll change.
     translateScrollX.value = event.contentOffset.x;
 
-    // Updating the current index change to highlight text with color in TopTabBarButton component
+    // Updating the current index change to highlight text with color in TabBarButton component
     animatedIndex.value = translateScrollX.value / WINDOW_WIDTH;
   });
 

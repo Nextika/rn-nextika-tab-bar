@@ -2,9 +2,9 @@ import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { Colors } from '../styles/Colors';
-import { TopTabBarButton } from './TopTabBarButton';
-export const TopTabBarHeader = props => {
-    if (props.topTabBarProps.hideTabBar) {
+import { TabBarButton } from './TabBarButton';
+export const TabBarHeader = props => {
+    if (props.tabBarProps.isHidden) {
         return null;
     }
     const onLayoutTab = (event, index) => {
@@ -12,14 +12,14 @@ export const TopTabBarHeader = props => {
         props.controller.setItemWidth({ ...props.controller.itemWidth, [index]: { width, x } });
     };
     return (React.createElement(View, { style: styles.container },
-        React.createElement(ScrollView, { ref: props.controller.scrollTabRef, bounces: false, horizontal: true, scrollEnabled: props.topTabBarProps.disableScroll, scrollEventThrottle: 1, showsHorizontalScrollIndicator: false, contentContainerStyle: [
+        React.createElement(ScrollView, { ref: props.controller.scrollTabRef, bounces: false, horizontal: true, scrollEnabled: props.tabBarProps.isScrollDisabled, scrollEventThrottle: 1, showsHorizontalScrollIndicator: false, contentContainerStyle: [
                 styles.contentContainer,
-                props.topTabBarProps.disableScroll && styles.contentContainerNotScroll,
+                props.tabBarProps.isScrollDisabled && styles.contentContainerNotScroll,
             ] },
-            props.topTabBarProps.tabs.map((tab, index) => (React.createElement(TopTabBarButton, { key: `ttbh_${index}`, tab: tab, topTabBarProps: props.topTabBarProps, index: index, isLast: props.topTabBarProps.tabs.length - 1 === index, disableScroll: !!props.topTabBarProps.disableScroll, animatedIndex: props.controller.animatedIndex, onPressTab: props.controller.onPressTab, onLayoutTab: onLayoutTab }))),
+            props.tabBarProps.tabs.map((tab, index) => (React.createElement(TabBarButton, { key: `ttbh_${index}`, tab: tab, tabBarProps: props.tabBarProps, index: index, animatedIndex: props.controller.animatedIndex, onPressTab: props.controller.onPressTab, onLayoutTab: onLayoutTab }))),
             Object.keys(props.controller.itemWidth).length > 1 && (React.createElement(Animated.View, { style: [
                     styles.tabUnderline,
-                    { backgroundColor: props.topTabBarProps.primaryColor ?? Colors.accent.default },
+                    { backgroundColor: props.tabBarProps.activeColor ?? Colors.accent.default },
                     props.controller.underlineStyle,
                 ] })))));
 };

@@ -3,12 +3,12 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { WINDOW_WIDTH } from '../hooks/useAnimatedTabController';
 const AnimatedFlatList = Animated.createAnimatedComponent((FlatList));
-export const TopTabBarContent = props => {
+export const TabBarContent = props => {
     const handleMomentumScrollEnd = (event) => {
         const index = Math.ceil(Math.floor(event.nativeEvent.contentOffset.x) / WINDOW_WIDTH);
         props.controller.currentIndex.value = index;
-        if (props.topTabBarProps.onChangeIndex && index !== props.controller.currentIndex.value) {
-            props.topTabBarProps.onChangeIndex(index);
+        if (props.tabBarProps.onChangeIndex && index !== props.controller.currentIndex.value) {
+            props.tabBarProps.onChangeIndex(index);
         }
     };
     const handleKeyExtractor = useCallback((_, index) => {
@@ -28,9 +28,9 @@ export const TopTabBarContent = props => {
         // Scroll parameters
         onScroll: props.controller.onScroll, onMomentumScrollEnd: handleMomentumScrollEnd, 
         // Render parameters
-        bounces: false, horizontal: true, pagingEnabled: true, scrollEnabled: !props.topTabBarProps.disablePageSwipe, overScrollMode: 'never', scrollEventThrottle: 0.1, keyboardShouldPersistTaps: 'handled', showsHorizontalScrollIndicator: false, data: props.topTabBarProps.tabs, style: styles.flex, contentContainerStyle: styles.contentContainer, 
+        bounces: false, horizontal: true, pagingEnabled: true, scrollEnabled: !props.tabBarProps.isSwipeDisabled, overScrollMode: 'never', scrollEventThrottle: 0.1, keyboardShouldPersistTaps: 'handled', showsHorizontalScrollIndicator: false, data: props.tabBarProps.tabs, style: styles.flex, contentContainerStyle: styles.contentContainer, 
         // Optimization parameters
-        extraData: props.topTabBarProps.tabs, initialNumToRender: 5, maxToRenderPerBatch: 5, keyExtractor: handleKeyExtractor, getItemLayout: handleItemLayout, 
+        extraData: props.tabBarProps.tabs, initialNumToRender: 5, maxToRenderPerBatch: 5, keyExtractor: handleKeyExtractor, getItemLayout: handleItemLayout, 
         // Render
         renderItem: renderItem }));
 };

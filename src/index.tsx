@@ -1,2 +1,2 @@
-export { TopTabBar } from './TopTabBar';
-export type { TopTabBarProps } from './types';
+export { TabBar } from './TabBar';
+export type { TabBarProps } from './types';

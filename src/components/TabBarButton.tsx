@@ -3,29 +3,27 @@ import { LayoutChangeEvent, StyleSheet, TouchableOpacity } from 'react-native';
 import Animated, { SharedValue, interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
 
 import { Colors } from '../styles/Colors';
-import { TopTabBarItem, TopTabBarProps } from '../types';
+import { TabBarItem, TabBarProps } from '../types';
 
-export type TopTabBarButtonProps = {
-  tab: TopTabBarItem;
-  topTabBarProps: TopTabBarProps;
+export type TabBarButtonProps = {
+  tab: TabBarItem;
+  tabBarProps: TabBarProps;
   index: number;
-  isLast: boolean;
   animatedIndex: SharedValue<number>;
   onPressTab: (index: number) => void;
   onLayoutTab: (event: LayoutChangeEvent, index: number) => void;
-  disableScroll?: boolean;
 };
 
-export const TopTabBarButton: FC<TopTabBarButtonProps> = props => {
+export const TabBarButton: FC<TabBarButtonProps> = props => {
   const textTabStyle = useAnimatedStyle(() => {
     return {
       color: interpolateColor(
         props.animatedIndex.value,
         [props.index - 1, props.index, props.index + 1],
         [
-          (props.topTabBarProps.secondaryColor as string | undefined) ?? Colors.text.secondary,
-          (props.topTabBarProps.primaryColor as string | undefined) ?? Colors.accent.default,
-          (props.topTabBarProps.secondaryColor as string | undefined) ?? Colors.text.secondary,
+          (props.tabBarProps.inactiveColor as string | undefined) ?? Colors.text.secondary,
+          (props.tabBarProps.activeColor as string | undefined) ?? Colors.accent.default,
+          (props.tabBarProps.inactiveColor as string | undefined) ?? Colors.text.secondary,
         ],
       ),
     };
@@ -38,16 +36,16 @@ export const TopTabBarButton: FC<TopTabBarButtonProps> = props => {
       onPress={() => props.onPressTab(props.index)}
       style={[
         styles.tabContainer,
-        !props.isLast && styles.tabMargin,
-        props.disableScroll && styles.tabContainerNotScroll,
+        props.tabBarProps.tabs.length - 1 !== props.index && styles.tabMargin,
+        props.tabBarProps.isScrollDisabled && styles.tabContainerNotScroll,
       ]}
     >
       {props.tab.renderLeftTitleComponent ? props.tab.renderLeftTitleComponent() : null}
       <Animated.Text
         style={[
           styles.textTab,
-          props.topTabBarProps.tabBarTextStyles,
-          { color: props.topTabBarProps.secondaryColor ?? Colors.text.secondary },
+          props.tabBarProps.tabBarTextStyles,
+          { color: props.tabBarProps.inactiveColor ?? Colors.text.secondary },
           textTabStyle,
         ]}
       >

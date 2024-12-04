@@ -1,1 +1,1 @@
-export { TopTabBar } from './TopTabBar';
+export { TabBar } from './TabBar';
