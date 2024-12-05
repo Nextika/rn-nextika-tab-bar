@@ -39,6 +39,7 @@ export const Content: FC = () => {
         isHidden={false}
         activeColor={'red'}
         inactiveColor={'green'}
+        tabBarHeaderStyles={styles.tabContainer}
       />
     </View>
   );
@@ -47,5 +48,8 @@ export const Content: FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  tabContainer: {
+    paddingHorizontal: 16,
   }
 })

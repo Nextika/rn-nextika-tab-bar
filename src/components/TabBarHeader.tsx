@@ -32,6 +32,7 @@ export const TabBarHeader: FC<TabBarHeaderProps> = props => {
         scrollEventThrottle={1}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={[
+          props.tabBarProps.tabBarHeaderStyles,
           styles.contentContainer,
           props.tabBarProps.isScrollDisabled && styles.contentContainerNotScroll,
         ]}
@@ -70,7 +71,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   contentContainer: {
-    paddingHorizontal: 16,
     flexDirection: 'row',
   },
   tabUnderline: {

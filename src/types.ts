@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ColorValue, StyleProp, TextStyle } from 'react-native';
+import { ColorValue, StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export type TabBarProps = {
   /**
@@ -47,6 +47,12 @@ export type TabBarProps = {
    * Every tab bar custom text styles
    */
   tabBarTextStyles?: StyleProp<TextStyle>;
+
+  /**
+   * Tab bar header custom styling.
+   * For example, we can set container paddings for Tabs.
+   */
+  tabBarHeaderStyles?: StyleProp<ViewStyle>;
 };
 
 export type TabBarItem = {

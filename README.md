@@ -60,16 +60,17 @@ export default function App() {
 
 ## Props
 
-| Name                 | Type                     | Description                                                                                         |
-|----------------------|--------------------------|-----------------------------------------------------------------------------------------------------|
-| tabs                 | TabBarItem[]             | An array of tabs                                                                                    |
-| isHidden             | boolean                  | Optional. Parameter to hide tab bar. Disabled by default                                            |
-| isScrollDisabled     | boolean                  | Optional. Parameter to disable tab bar header's horizontal scroll. Disabled by default              |
-| isSwipeDisabled      | boolean                  | Optional. Parameter to disable tab bar content swipe (between contents) option. Disabled by default |                                                                                                    |
-| onChangeIndex        | (index: number) => void  | Callback. Gets called when tab index is changed                                                     |                                                                                                    |
-| activeColor          | ColorValue               | Optional. Active tab color                                                                          |                                                                                                    |
-| inactiveColor        | ColorValue               | Optional. Inactive tab color                                                                        |                                                                                                    |
-| tabBarTextStyles     | StyleProp<TextStyle>     | Optional. Every tab bar custom text styles                                                          |                                                                                                    |
+| Name                | Type                    | Description                                                                                         |
+|---------------------|-------------------------|-----------------------------------------------------------------------------------------------------|
+| tabs                | TabBarItem[]            | An array of tabs                                                                                    |
+| isHidden            | boolean                 | Optional. Parameter to hide tab bar. Disabled by default                                            |
+| isScrollDisabled    | boolean                 | Optional. Parameter to disable tab bar header's horizontal scroll. Disabled by default              |
+| isSwipeDisabled     | boolean                 | Optional. Parameter to disable tab bar content swipe (between contents) option. Disabled by default |                                                                                                    |
+| onChangeIndex       | (index: number) => void | Callback. Gets called when tab index is changed                                                     |                                                                                                    |
+| activeColor         | ColorValue              | Optional. Active tab color                                                                          |                                                                                                    |
+| inactiveColor       | ColorValue              | Optional. Inactive tab color                                                                        |                                                                                                    |
+| tabBarTextStyles    | StyleProp<TextStyle>    | Optional. Every tab bar custom text styles                                                          |                                                                                                    |
+| tabBarHeaderStyles  | StyleProp<ViewStyle>    | Optional. Tab bar header custom styling                                                             |                                                                                                    |
 
 ## Contributing
 
