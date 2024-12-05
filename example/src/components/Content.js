@@ -24,10 +24,13 @@ export const Content = () => {
         });
     }, []);
     return (React.createElement(View, { style: [styles.container, { marginTop: insets.top }] },
-        React.createElement(TabBar, { tabs: tabs, isScrollDisabled: false, isSwipeDisabled: false, isHidden: false, activeColor: 'red', inactiveColor: 'green' })));
+        React.createElement(TabBar, { tabs: tabs, isScrollDisabled: false, isSwipeDisabled: false, isHidden: false, activeColor: 'red', inactiveColor: 'green', tabBarHeaderStyles: styles.tabContainer })));
 };
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    tabContainer: {
+        paddingHorizontal: 16,
     }
 });

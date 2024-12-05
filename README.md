@@ -23,7 +23,7 @@ sections and then run above commands once more.
 
 ```tsx
 import React, { useMemo } from 'react';
-import { TabBar } from 'rn-nextika-image-viewing';
+import { TabBar } from 'rn-nextika-tab-bar';
 
 export default function App() {
   const data = [

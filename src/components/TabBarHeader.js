@@ -13,6 +13,7 @@ export const TabBarHeader = props => {
     };
     return (React.createElement(View, { style: styles.container },
         React.createElement(ScrollView, { ref: props.controller.scrollTabRef, bounces: false, horizontal: true, scrollEnabled: !props.tabBarProps.isScrollDisabled, scrollEventThrottle: 1, showsHorizontalScrollIndicator: false, contentContainerStyle: [
+                props.tabBarProps.tabBarHeaderStyles,
                 styles.contentContainer,
                 props.tabBarProps.isScrollDisabled && styles.contentContainerNotScroll,
             ] },
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
         flexGrow: 1,
     },
     contentContainer: {
-        paddingHorizontal: 16,
         flexDirection: 'row',
     },
     tabUnderline: {
