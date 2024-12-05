@@ -2,6 +2,8 @@
 
 React Native library for implementing tab bar
 
+https://github.com/user-attachments/assets/2634bfc2-7819-4ab0-997f-45862d500ff6
+
 ## Installation
 
   ```sh
