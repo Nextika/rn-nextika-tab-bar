@@ -12,7 +12,7 @@ yarn add rn-nextika-tab-bar
 ```
 
 ## Usage
-You can check common usage via console `yarn example start` or by link [example]()
+You can check common usage via console `yarn example start` or by link [example](./example/src/components/Content.tsx)
 
 If example installation gives you an error: Please make and install a development build on the device first.
 You need to run `yarn example android` or `yarn example ios` first, to install the required build.
@@ -36,7 +36,7 @@ export default function App() {
         title: item.title,
         renderContent: () => (
           <View>
-            <Text ag={Ag.Subtitle1}>{item.description}</Text>
+            <Text>{item.description}</Text>
           </View>
         ),
       };
@@ -48,9 +48,9 @@ export default function App() {
       tabs={tabs}
       isScrollDisabled={false}
       isSwipeDisabled={false}
-      hideTabBar={false}
-      primaryColor={'red'}
-      secondaryColor={'green'}
+      isHidden={false}
+      activeColor={'red'}
+      inactiveColor={'green'}
     />
   );
 }

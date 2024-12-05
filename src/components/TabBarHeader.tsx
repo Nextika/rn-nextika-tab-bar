@@ -28,7 +28,7 @@ export const TabBarHeader: FC<TabBarHeaderProps> = props => {
         ref={props.controller.scrollTabRef}
         bounces={false}
         horizontal
-        scrollEnabled={props.tabBarProps.isScrollDisabled}
+        scrollEnabled={!props.tabBarProps.isScrollDisabled}
         scrollEventThrottle={1}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={[

@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "rn-nextika-tab-bar-example",
+    "slug": "rn-nextika-tab-bar-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "rnnextikatabbar.example"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "rnnextikatabbar.example"
+    },
+    "description": "Example app for rn-nextika-tab-bar",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

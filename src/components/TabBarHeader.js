@@ -12,7 +12,7 @@ export const TabBarHeader = props => {
         props.controller.setItemWidth({ ...props.controller.itemWidth, [index]: { width, x } });
     };
     return (React.createElement(View, { style: styles.container },
-        React.createElement(ScrollView, { ref: props.controller.scrollTabRef, bounces: false, horizontal: true, scrollEnabled: props.tabBarProps.isScrollDisabled, scrollEventThrottle: 1, showsHorizontalScrollIndicator: false, contentContainerStyle: [
+        React.createElement(ScrollView, { ref: props.controller.scrollTabRef, bounces: false, horizontal: true, scrollEnabled: !props.tabBarProps.isScrollDisabled, scrollEventThrottle: 1, showsHorizontalScrollIndicator: false, contentContainerStyle: [
                 styles.contentContainer,
                 props.tabBarProps.isScrollDisabled && styles.contentContainerNotScroll,
             ] },
